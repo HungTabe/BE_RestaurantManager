@@ -5,6 +5,7 @@ namespace BE_RestaurantManagement.Interfaces
 {
     public interface IUserService
     {
+        // Change version
         Task<User> RegisterUserAsync(string fullName, string email, string password, string roleId);
         Task<string> AuthenticateAsync(LoginRequest request);
     }
