@@ -1,12 +1,265 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|d:\\2025year\\visualstudio\\repos\\be_restaurantmanagement\\be_restaurantmanagement\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|solutionrelative:be_restaurantmanagement\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|d:\\2025year\\visualstudio\\repos\\be_restaurantmanagement\\be_restaurantmanagement\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|solutionrelative:be_restaurantmanagement\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|d:\\2025year\\visualstudio\\repos\\be_restaurantmanagement\\be_restaurantmanagement\\models\\menuitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|solutionrelative:be_restaurantmanagement\\models\\menuitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|d:\\2025year\\visualstudio\\repos\\be_restaurantmanagement\\be_restaurantmanagement\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|solutionrelative:be_restaurantmanagement\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|d:\\2025year\\visualstudio\\repos\\be_restaurantmanagement\\be_restaurantmanagement\\dtos\\userregistrationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|solutionrelative:be_restaurantmanagement\\dtos\\userregistrationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|d:\\2025year\\visualstudio\\repos\\be_restaurantmanagement\\be_restaurantmanagement\\dtos\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|solutionrelative:be_restaurantmanagement\\dtos\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|d:\\2025year\\visualstudio\\repos\\be_restaurantmanagement\\be_restaurantmanagement\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|solutionrelative:be_restaurantmanagement\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|d:\\2025year\\visualstudio\\repos\\be_restaurantmanagement\\be_restaurantmanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|solutionrelative:be_restaurantmanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|d:\\2025year\\visualstudio\\repos\\be_restaurantmanagement\\be_restaurantmanagement\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|solutionrelative:be_restaurantmanagement\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|d:\\2025year\\visualstudio\\repos\\be_restaurantmanagement\\be_restaurantmanagement\\configs\\ignorepropertiesfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|solutionrelative:be_restaurantmanagement\\configs\\ignorepropertiesfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|d:\\2025year\\visualstudio\\repos\\be_restaurantmanagement\\be_restaurantmanagement\\be_restaurantmanagement.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|solutionrelative:be_restaurantmanagement\\be_restaurantmanagement.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|d:\\2025year\\visualstudio\\repos\\be_restaurantmanagement\\be_restaurantmanagement\\data\\restaurantdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|solutionrelative:be_restaurantmanagement\\data\\restaurantdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|d:\\2025year\\visualstudio\\repos\\be_restaurantmanagement\\be_restaurantmanagement\\migrations\\20250217021359_initialcreate.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|solutionrelative:be_restaurantmanagement\\migrations\\20250217021359_initialcreate.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|d:\\2025year\\visualstudio\\repos\\be_restaurantmanagement\\be_restaurantmanagement\\models\\revenuereport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|solutionrelative:be_restaurantmanagement\\models\\revenuereport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|d:\\2025year\\visualstudio\\repos\\be_restaurantmanagement\\be_restaurantmanagement\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07C0836A-476F-44BB-8ABB-8246003B532B}|BE_RestaurantManagement\\BE_RestaurantManagement.csproj|solutionrelative:be_restaurantmanagement\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MenuItem.cs",
+              "DocumentMoniker": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Models\\MenuItem.cs",
+              "RelativeDocumentMoniker": "BE_RestaurantManagement\\Models\\MenuItem.cs",
+              "ToolTip": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Models\\MenuItem.cs",
+              "RelativeToolTip": "BE_RestaurantManagement\\Models\\MenuItem.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T13:13:19.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\appsettings.json",
+              "RelativeDocumentMoniker": "BE_RestaurantManagement\\appsettings.json",
+              "ToolTip": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\appsettings.json",
+              "RelativeToolTip": "BE_RestaurantManagement\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-02-17T01:41:06.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Program.cs",
+              "RelativeDocumentMoniker": "BE_RestaurantManagement\\Program.cs",
+              "ToolTip": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Program.cs",
+              "RelativeToolTip": "BE_RestaurantManagement\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T01:55:35.732Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "BE_RestaurantManagement\\Controllers\\UsersController.cs",
+              "ToolTip": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "BE_RestaurantManagement\\Controllers\\UsersController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwBwAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T03:04:12.512Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserRegistrationRequest.cs",
+              "DocumentMoniker": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\DTOs\\UserRegistrationRequest.cs",
+              "RelativeDocumentMoniker": "BE_RestaurantManagement\\DTOs\\UserRegistrationRequest.cs",
+              "ToolTip": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\DTOs\\UserRegistrationRequest.cs",
+              "RelativeToolTip": "BE_RestaurantManagement\\DTOs\\UserRegistrationRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T03:07:12.281Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LoginRequest.cs",
+              "DocumentMoniker": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\DTOs\\LoginRequest.cs",
+              "RelativeDocumentMoniker": "BE_RestaurantManagement\\DTOs\\LoginRequest.cs",
+              "ToolTip": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\DTOs\\LoginRequest.cs",
+              "RelativeToolTip": "BE_RestaurantManagement\\DTOs\\LoginRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T07:06:43.578Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Models\\User.cs",
+              "RelativeDocumentMoniker": "BE_RestaurantManagement\\Models\\User.cs",
+              "ToolTip": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Models\\User.cs",
+              "RelativeToolTip": "BE_RestaurantManagement\\Models\\User.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T02:50:02.018Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Interfaces\\IUserService.cs",
+              "RelativeDocumentMoniker": "BE_RestaurantManagement\\Interfaces\\IUserService.cs",
+              "ToolTip": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Interfaces\\IUserService.cs",
+              "RelativeToolTip": "BE_RestaurantManagement\\Interfaces\\IUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T02:51:29.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "BE_RestaurantManagement\\Services\\UserService.cs",
+              "ToolTip": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Services\\UserService.cs",
+              "RelativeToolTip": "BE_RestaurantManagement\\Services\\UserService.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAqwD4AAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T02:56:36.172Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IgnorePropertiesFilter.cs",
+              "DocumentMoniker": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Configs\\IgnorePropertiesFilter.cs",
+              "RelativeDocumentMoniker": "BE_RestaurantManagement\\Configs\\IgnorePropertiesFilter.cs",
+              "ToolTip": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Configs\\IgnorePropertiesFilter.cs",
+              "RelativeToolTip": "BE_RestaurantManagement\\Configs\\IgnorePropertiesFilter.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBEAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T07:49:04.205Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "BE_RestaurantManagement.csproj",
+              "DocumentMoniker": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\BE_RestaurantManagement.csproj",
+              "RelativeDocumentMoniker": "BE_RestaurantManagement\\BE_RestaurantManagement.csproj",
+              "ToolTip": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\BE_RestaurantManagement.csproj",
+              "RelativeToolTip": "BE_RestaurantManagement\\BE_RestaurantManagement.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-02-17T02:50:59.449Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RestaurantDbContext.cs",
+              "DocumentMoniker": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Data\\RestaurantDbContext.cs",
+              "RelativeDocumentMoniker": "BE_RestaurantManagement\\Data\\RestaurantDbContext.cs",
+              "ToolTip": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Data\\RestaurantDbContext.cs",
+              "RelativeToolTip": "BE_RestaurantManagement\\Data\\RestaurantDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T01:46:11.254Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "20250217021359_InitialCreate.Designer.cs",
+              "DocumentMoniker": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Migrations\\20250217021359_InitialCreate.Designer.cs",
+              "RelativeDocumentMoniker": "BE_RestaurantManagement\\Migrations\\20250217021359_InitialCreate.Designer.cs",
+              "ToolTip": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Migrations\\20250217021359_InitialCreate.Designer.cs",
+              "RelativeToolTip": "BE_RestaurantManagement\\Migrations\\20250217021359_InitialCreate.Designer.cs",
+              "ViewState": "AgIAAAcBAAAAAAAAAAAqwBUBAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T06:35:35.942Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "RevenueReport.cs",
+              "DocumentMoniker": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Models\\RevenueReport.cs",
+              "RelativeDocumentMoniker": "BE_RestaurantManagement\\Models\\RevenueReport.cs",
+              "ToolTip": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Models\\RevenueReport.cs",
+              "RelativeToolTip": "BE_RestaurantManagement\\Models\\RevenueReport.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T02:13:43.503Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Role.cs",
+              "DocumentMoniker": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Models\\Role.cs",
+              "RelativeDocumentMoniker": "BE_RestaurantManagement\\Models\\Role.cs",
+              "ToolTip": "D:\\2025YEAR\\VisualStudio\\repos\\BE_RestaurantManagement\\BE_RestaurantManagement\\Models\\Role.cs",
+              "RelativeToolTip": "BE_RestaurantManagement\\Models\\Role.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T03:15:19.491Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

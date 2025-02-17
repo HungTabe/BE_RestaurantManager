@@ -1,0 +1,59 @@
+# ------------------------------
+# Visual Studio & Rider
+# ------------------------------
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# ------------------------------
+# Build & Output
+# ------------------------------
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+*.csproj.user
+
+# ------------------------------
+# Packages & Dependencies
+# ------------------------------
+packages/
+node_modules/
+wwwroot/lib/
+
+# ------------------------------
+# Config & Secrets
+# ------------------------------
+appsettings.Development.json
+appsettings.Local.json
+appsettings.Test.json
+secrets.json
+.env
+
+# ------------------------------
+# Logs & Debug
+# ------------------------------
+*.log
+logs/
+debug/
+error.log
+trace.log
+
+# ------------------------------
+# IIS & Deployment
+# ------------------------------
+*.publishsettings
+*.pubxml
+*.pfx
+
+# ------------------------------
+# Resharper, Rider & Code Analysis
+# ------------------------------
+_ReSharper.Caches/
+*.DotSettings.user
