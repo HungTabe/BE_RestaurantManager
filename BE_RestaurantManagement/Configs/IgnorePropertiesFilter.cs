@@ -7,10 +7,10 @@ namespace BE_RestaurantManagement.Configs
     {
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
-            // Danh sách các thuộc tính mà bạn muốn loại bỏ khỏi Swagger documentation
+            // Danh sách các thuộc tính muốn loại bỏ khỏi Swagger documentation
             var propertiesToIgnore = new List<string> { "twoFactorCode", "twoFactorRecoveryCode" };
 
-            // Kiểm tra xem request body có tồn tại hay không
+            // Check request body có tồn tại hay không
             if (operation.RequestBody?.Content.Values is IList<OpenApiMediaType> contentMediaTypes)
             {
                 // Duyệt qua các media types trong request body

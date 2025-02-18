@@ -1,11 +1,15 @@
 ﻿using BE_RestaurantManagement.Interfaces;
+using BE_RestaurantManagement.Middleware;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BE_RestaurantManagement.Controllers
 {
+    [Authorize(Roles = "2")]
+    [Route("api/users")]
     [ApiController]
-    [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -15,45 +19,14 @@ namespace BE_RestaurantManagement.Controllers
             _userService = userService;
         }
 
-        // POST api/users/register
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] DTOs.UserRegistrationRequest request)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
-            try
-            {
-                var user = await _userService.RegisterUserAsync(request.FullName, request.Email, request.Password, request.RoleId);
-                return Ok(new
-                {
-                    user.UserId,
-                    user.FullName,
-                    user.Email,
-                    user.Password,
-                    user.RoleId
-                    
-                });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { error = ex.Message });
-            }
+        [HttpGet("search")]
+        public IActionResult SearchUsers([FromQuery] string keyword)
+        {
+          
+            var users = _userService.SearchUsers(keyword);
+            return Ok(users);
         }
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequest request)
-        {
-            var token = await _userService.AuthenticateAsync(request);
-
-            if (token == null)
-            {
-                return Unauthorized(new { message = "Invalid email or password" });
-            }
-
-            return Ok(new { token });
-        }
     }
 }

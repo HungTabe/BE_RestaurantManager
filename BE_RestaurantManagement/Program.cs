@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using BE_RestaurantManagement.Configs;
 using Microsoft.IdentityModel.Tokens;
+using BE_RestaurantManagement.Middleware;
+using System.IdentityModel.Tokens.Jwt;
 
 
 
@@ -26,6 +28,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 // Đăng ký service (Dependency Injection)
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
 
 // Đăng ký DbContext với SQL Server
 builder.Services.AddDbContext<RestaurantDbContext>(options =>
@@ -54,6 +58,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 // Add services to the container.
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -61,6 +66,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.UseAuthentication(); // 🔑 Kích hoạt xác thực JWT
+
 
 
 // Configure the HTTP request pipeline.

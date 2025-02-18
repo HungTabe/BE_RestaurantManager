@@ -13,7 +13,6 @@ namespace BE_RestaurantManagement.DTOs
         [Required]
         public string Password { get; set; }
 
-        [Required]
         public string RoleId { get; set; }
 
     }
