@@ -28,6 +28,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 // Register service (Dependency Injection)
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
+
 
 
 // Register DbContext to SQL Server
