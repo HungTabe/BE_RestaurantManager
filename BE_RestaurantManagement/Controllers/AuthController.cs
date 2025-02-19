@@ -3,6 +3,8 @@ using BE_RestaurantManagement.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity.Data;
 using LoginRequest = BE_RestaurantManagement.DTOs.LoginRequest;
+using BE_RestaurantManagement.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BE_RestaurantManagement.Controllers
 {
@@ -58,5 +60,18 @@ namespace BE_RestaurantManagement.Controllers
             return Ok(new { token });
         }
 
+        [Authorize]
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            // Get token from request header
+            var token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+            if (string.IsNullOrEmpty(token)) return BadRequest("Token is required");
+
+            var result = _authService.Logout(token);
+            if (!result) return BadRequest("Failed to logout");
+
+            return Ok("Logged out successfully");
+        }
     }
 }

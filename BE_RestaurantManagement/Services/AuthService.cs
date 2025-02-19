@@ -3,6 +3,7 @@ using BE_RestaurantManagement.DTOs;
 using BE_RestaurantManagement.Interfaces;
 using BE_RestaurantManagement.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -14,12 +15,16 @@ namespace BE_RestaurantManagement.Services
     {
         private readonly RestaurantDbContext _context;
         private readonly IConfiguration _config;
+        private readonly IMemoryCache _cache; // Cache memo to save blocked token list
 
 
-        public AuthService(RestaurantDbContext context, IConfiguration config)
+
+        public AuthService(RestaurantDbContext context, IConfiguration config, IMemoryCache cache)
         {
             _context = context;
             _config = config;
+            _cache = cache ?? throw new ArgumentNullException(nameof(cache));
+
         }
 
         public async Task<User> RegisterUserAsync(string fullName, string email, string password, string roleId)
@@ -91,6 +96,18 @@ namespace BE_RestaurantManagement.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+        public bool Logout(string token)
+        {
+            if (string.IsNullOrEmpty(token)) return false;
+
+            // Save token into cache blacklist
+            var expiration = DateTime.UtcNow.AddMinutes(30); // Token outdate after 30 mins
+            _cache.Set(token, "blacklisted", new MemoryCacheEntryOptions { AbsoluteExpiration = expiration });
+
+            return true;
+        }
+
 
 
     }

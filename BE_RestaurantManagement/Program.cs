@@ -15,27 +15,26 @@ using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Thêm các dịch vụ vào container của ứng dụng
 builder.Services.AddSwaggerGen(options =>
 {
-    // Đăng ký custom operation filter mà bạn đã tạo
+    // Register custom operation filter
     options.OperationFilter<IgnorePropertiesFilter>();
 });
 
 
-// Lấy connection string từ appsettings.json
+// Get connection string from appsettings.json
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Đăng ký service (Dependency Injection)
+// Register service (Dependency Injection)
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 
-// Đăng ký DbContext với SQL Server
+// Register DbContext to SQL Server
 builder.Services.AddDbContext<RestaurantDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// Cấu hình JWT Authentication
+// Config JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]);
 
@@ -54,10 +53,24 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-
-// Add services to the container.
-
 builder.Services.AddControllers();
+// Add cache to save blocked token list
+builder.Services.AddMemoryCache();
+
+// Fix CORS error
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:3000") // FE domain
+                  .AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowCredentials(); // If use cookie
+        });
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -65,9 +78,11 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.UseAuthentication(); // 🔑 Kích hoạt xác thực JWT
+// Active authen JWT
+app.UseAuthentication();
 
-
+// Active cors in pipeline
+app.UseCors(MyAllowSpecificOrigins);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -77,6 +92,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Active middleware check blacklist
+app.UseMiddleware<TokenBlacklistMiddleware>(); 
 
 app.UseAuthorization();
 
