@@ -29,13 +29,13 @@ namespace BE_RestaurantManagement.Services
 
         public async Task<User> RegisterUserAsync(string fullName, string email, string password, string roleId)
         {
-            // Kiểm tra xem email đã tồn tại hay chưa
+            // Check existed email
             if (await _context.Users.AnyAsync(u => u.Email == email))
             {
                 throw new Exception("Email is already registered.");
             }
 
-            // Hash password (sử dụng BCrypt, cài package BCrypt.Net-Next)
+            // Hash password (use BCrypt, install package BCrypt.Net-Next)
             var passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
 
             var user = new User
@@ -43,7 +43,7 @@ namespace BE_RestaurantManagement.Services
                 FullName = fullName,
                 Email = email,
                 Password = passwordHash,
-                RoleId = 2, // Mặc định khi register vào thì RoleId=2 là user thông thường
+                RoleId = 1, // Default when register then RoleId=1 is user
             };
 
             _context.Users.Add(user);
@@ -59,17 +59,17 @@ namespace BE_RestaurantManagement.Services
 
             if (user == null)
             {
-                return null; // Sai email hoặc mật khẩu
+                return null; // Wrong email or password
             }
 
             // Kiểm tra mật khẩu đã mã hóa so với mật khẩu người dùng nhập vào
             if (!BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
             {
-                return null; // Mật khẩu không chính xác
+                return null; // Wrong password
             }
 
 
-            return GenerateJwtToken(user); // Tạo token sau khi xác thực thành công
+            return GenerateJwtToken(user); // Make token
         }
 
         private string GenerateJwtToken(User user)
@@ -79,7 +79,7 @@ namespace BE_RestaurantManagement.Services
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserId.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString(), ClaimValueTypes.Integer64),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(ClaimTypes.Role, user.RoleId.ToString())
 

@@ -7,5 +7,7 @@ namespace BE_RestaurantManagement.Interfaces
     {
         // Only for user have roleId = 2 (Admin);
         IEnumerable<User> SearchUsers(string keyword);
+        Task<bool> ChangePassword(int userId, string oldPassword, string newPassword);
+
     }
 }

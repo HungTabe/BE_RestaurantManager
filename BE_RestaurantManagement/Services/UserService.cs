@@ -31,5 +31,21 @@ namespace BE_RestaurantManagement.Services
                 .ToList();
         }
 
+        public async Task<bool> ChangePassword(int userId, string oldPassword, string newPassword)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+                throw new Exception("User not found");
+
+            // Check old password
+            if (!BCrypt.Net.BCrypt.Verify(oldPassword, user.Password))
+                throw new Exception("Incorrect old password");
+
+            // Encode new password
+            user.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
     }
 }
