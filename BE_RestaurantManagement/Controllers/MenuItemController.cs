@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BE_RestaurantManagement.Controllers
 {
-    [Authorize(Roles = "2")] // Chỉ Admin có quyền truy cập API này
+    [Authorize(Roles = "2")] // Just Admin can access this API
     [Route("api/menuitems")]
     [ApiController]
     public class MenuItemController : ControllerBase
@@ -17,15 +17,17 @@ namespace BE_RestaurantManagement.Controllers
             _menuItemService = menuItemService;
         }
 
-        // Lấy tất cả món ăn
-        [HttpGet]
+        // Get all menu items (Accessible by both Users & Admins)
+        [HttpGet("GetAllMenuItems")]
+        [AllowAnonymous] // Allow users to view the menu
         public async Task<IActionResult> GetAllMenuItems()
         {
             return Ok(await _menuItemService.GetAllMenuItems());
         }
 
-        // Lấy món ăn theo ID
-        [HttpGet("{id}")]
+        // Get menu item by ID (Accessible by both Users & Admins)
+        [HttpGet("GetMenuById/{id}")]
+        [AllowAnonymous] // Allow users to view menu item details
         public async Task<IActionResult> GetMenuItemById(int id)
         {
             var item = await _menuItemService.GetMenuItemById(id);
@@ -33,16 +35,25 @@ namespace BE_RestaurantManagement.Controllers
             return Ok(item);
         }
 
-        // Thêm món ăn mới
-        [HttpPost]
+        // Search for menu items by name, category, or price (Accessible by both Users & Admins)
+        [HttpGet("search")]
+        [AllowAnonymous] // Allow users to search for menu items
+        public async Task<IActionResult> SearchMenuItems([FromQuery] string query)
+        {
+            var result = await _menuItemService.SearchMenuItems(query);
+            return Ok(result);
+        }
+
+        // Add a new menu item (Only Admin)
+        [HttpPost("AddNewMenu")]
         public async Task<IActionResult> AddMenuItem([FromBody] MenuItem menuItem)
         {
             var newItem = await _menuItemService.AddMenuItem(menuItem);
             return CreatedAtAction(nameof(GetMenuItemById), new { id = newItem.MenuItemId }, newItem);
         }
 
-        // Cập nhật món ăn
-        [HttpPut("{id}")]
+        // Update menu item details (Only Admin)
+        [HttpPut("UpdateMenuByID/{id}")]
         public async Task<IActionResult> UpdateMenuItem(int id, [FromBody] MenuItem updatedItem)
         {
             var item = await _menuItemService.UpdateMenuItem(id, updatedItem);
@@ -50,8 +61,8 @@ namespace BE_RestaurantManagement.Controllers
             return Ok(item);
         }
 
-        // Xóa món ăn
-        [HttpDelete("{id}")]
+        // Delete a menu item (Only Admin)
+        [HttpDelete("DeleteMenuByID/{id}")]
         public async Task<IActionResult> DeleteMenuItem(int id)
         {
             var success = await _menuItemService.DeleteMenuItem(id);

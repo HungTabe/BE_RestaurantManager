@@ -6,6 +6,7 @@ namespace BE_RestaurantManagement.Interfaces
     {
         Task<List<MenuItem>> GetAllMenuItems();
         Task<MenuItem?> GetMenuItemById(int id);
+        Task<IEnumerable<MenuItem>> SearchMenuItems(string query);
         Task<MenuItem> AddMenuItem(MenuItem menuItem);
         Task<MenuItem?> UpdateMenuItem(int id, MenuItem updatedItem);
         Task<bool> DeleteMenuItem(int id);

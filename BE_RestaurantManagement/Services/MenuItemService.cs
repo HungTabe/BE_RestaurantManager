@@ -14,19 +14,19 @@ namespace BE_RestaurantManagement.Services
             _context = context;
         }
 
-        // Lấy danh sách tất cả món ăn
+        // Get all Menu
         public async Task<List<MenuItem>> GetAllMenuItems()
         {
             return await _context.MenuItems.ToListAsync();
         }
 
-        // Lấy món ăn theo ID
+        // Get menu by ID
         public async Task<MenuItem?> GetMenuItemById(int id)
         {
             return await _context.MenuItems.FindAsync(id);
         }
 
-        // Thêm món ăn mới
+        // Add new Menu
         public async Task<MenuItem> AddMenuItem(MenuItem menuItem)
         {
             _context.MenuItems.Add(menuItem);
@@ -34,7 +34,7 @@ namespace BE_RestaurantManagement.Services
             return menuItem;
         }
 
-        // Cập nhật món ăn
+        // Update Menu
         public async Task<MenuItem?> UpdateMenuItem(int id, MenuItem updatedItem)
         {
             var existingItem = await _context.MenuItems.FindAsync(id);
@@ -51,7 +51,7 @@ namespace BE_RestaurantManagement.Services
             return existingItem;
         }
 
-        // Xóa món ăn
+        // Delete Menu
         public async Task<bool> DeleteMenuItem(int id)
         {
             var menuItem = await _context.MenuItems.FindAsync(id);
@@ -60,6 +60,12 @@ namespace BE_RestaurantManagement.Services
             _context.MenuItems.Remove(menuItem);
             await _context.SaveChangesAsync();
             return true;
+        }
+        public async Task<IEnumerable<MenuItem>> SearchMenuItems(string query)
+        {
+            return await _context.MenuItems
+                .Where(m => m.Name.Contains(query) || m.Category.Contains(query))
+                .ToListAsync();
         }
     }
 }
