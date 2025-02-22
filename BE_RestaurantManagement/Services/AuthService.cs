@@ -52,24 +52,32 @@ namespace BE_RestaurantManagement.Services
             return user;
         }
 
-        public async Task<string> AuthenticateAsync(LoginRequest request)
+        public async Task<AuthResponse> AuthenticateAsync(LoginRequest request)
         {
             var user = await _context.Users
             .FirstOrDefaultAsync(u => u.Email == request.Email);
 
             if (user == null)
             {
+                return null; // Wrong email
+            }
+
+            // Check the encrypted password compared to the user password
+            if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
+            {
                 return null; // Wrong email or password
             }
 
-            // Kiểm tra mật khẩu đã mã hóa so với mật khẩu người dùng nhập vào
-            if (!BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
+            var token = GenerateJwtToken(user); // Make token
+
+            return new AuthResponse
             {
-                return null; // Wrong password
-            }
-
-
-            return GenerateJwtToken(user); // Make token
+                Token = token,
+                UserId = user.UserId,
+                FullName = user.FullName,
+                Email = user.Email,
+                RoleId = user.RoleId
+            };
         }
 
         private string GenerateJwtToken(User user)

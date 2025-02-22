@@ -50,14 +50,14 @@ namespace BE_RestaurantManagement.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            var token = await _authService.AuthenticateAsync(request);
+            var authResponse = await _authService.AuthenticateAsync(request);
 
-            if (token == null)
+            if (authResponse == null)
             {
                 return Unauthorized(new { message = "Invalid email or password" });
             }
 
-            return Ok(new { token });
+            return Ok(authResponse);
         }
 
         [Authorize]
