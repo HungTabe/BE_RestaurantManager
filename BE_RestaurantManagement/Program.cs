@@ -29,8 +29,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
-
-
+builder.Services.AddScoped<IMenuItemService, MenuItemService>();
 
 // Register DbContext to SQL Server
 builder.Services.AddDbContext<RestaurantDbContext>(options =>

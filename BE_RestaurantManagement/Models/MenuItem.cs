@@ -13,21 +13,20 @@ namespace BE_RestaurantManagement.Models
         public string Name { get; set; }
 
         [Column(TypeName = "nvarchar(500)")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(10,2)")]
         public decimal Price { get; set; }
 
         [Column(TypeName = "nvarchar(100)")]
-        public string Category { get; set; } // VD: Đồ uống, Món chính
+        public string? Category { get; set; }
 
-        public bool IsAvailable { get; set; } = true; // Món có sẵn không?
+        public bool IsAvailable { get; set; } = true;
 
         [Column(TypeName = "nvarchar(255)")]
-        public string ImageUrl { get; set; } // Hình ảnh món ăn
+        public string? ImageUrl { get; set; }
 
-        // Một món ăn có thể xuất hiện trong nhiều đơn hàng
-        public ICollection<OrderItem> OrderItems { get; set; }
+        public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }
