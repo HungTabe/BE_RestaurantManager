@@ -1,0 +1,12 @@
+INSERT INTO MenuItems (Name, Description, Price, Category, IsAvailable, ImageUrl)
+VALUES 
+('Margherita Pizza', 'Classic pizza with tomato sauce, mozzarella, and basil', 8.99, 'Pizza', 1, 'images/margherita.jpg'),
+('Pepperoni Pizza', 'Spicy pepperoni with melted cheese and tomato sauce', 9.99, 'Pizza', 1, 'images/pepperoni.jpg'),
+('Caesar Salad', 'Fresh romaine lettuce with Caesar dressing, croutons, and parmesan', 6.99, 'Salad', 1, 'images/caesar_salad.jpg'),
+('Spaghetti Carbonara', 'Traditional pasta with bacon, eggs, and parmesan cheese', 12.99, 'Pasta', 1, 'images/carbonara.jpg'),
+('Grilled Salmon', 'Salmon fillet grilled to perfection, served with vegetables', 14.99, 'Seafood', 1, 'images/grilled_salmon.jpg'),
+('Cheeseburger', 'Juicy beef patty with cheese, lettuce, tomato, and pickles', 7.99, 'Burger', 1, 'images/cheeseburger.jpg'),
+('French Fries', 'Crispy golden fries served with ketchup', 3.99, 'Side', 1, 'images/fries.jpg'),
+('Chocolate Cake', 'Rich and moist chocolate cake topped with ganache', 5.99, 'Dessert', 1, 'images/chocolate_cake.jpg'),
+('Mango Smoothie', 'Refreshing mango smoothie with fresh fruit and yogurt', 4.99, 'Beverage', 1, 'images/mango_smoothie.jpg'),
+('Espresso', 'Strong and bold espresso shot', 2.99, 'Beverage', 1, 'images/espresso.jpg');

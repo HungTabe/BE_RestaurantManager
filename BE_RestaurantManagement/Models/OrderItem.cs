@@ -23,6 +23,6 @@ namespace BE_RestaurantManagement.Models
 
         [Required]
         [Column(TypeName = "decimal(10,2)")]
-        public decimal TotalPrice { get; set; } // Giá = Số lượng * Giá món
+        public decimal TotalPrice { get; set; } // Price = Number * CostPer
     }
 }

@@ -19,7 +19,7 @@ namespace BE_RestaurantManagement.Models
         [Column(TypeName = "nvarchar(50)")]
         public string Status { get; set; } // Pending, Cooking, Completed
 
-        // Thêm StaffId để biết nhân viên nào xử lý đơn hàng
+        // StaffId to know which staff progress this order
         public int? StaffId { get; set; }
         [ForeignKey("StaffId")]
         public Staff Staff { get; set; } // Quan hệ với Staff
