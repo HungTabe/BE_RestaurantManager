@@ -25,5 +25,18 @@ namespace BE_RestaurantManagement.Services
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<bool> ChangeUserRoleAsync(int userId, int newRoleId)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+            {
+                return false;
+            }
+
+            user.RoleId = newRoleId;
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }
