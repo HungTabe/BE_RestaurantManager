@@ -2,7 +2,7 @@
 {
     public class Staff : User
     {
-        public ICollection<Order> ProcessedOrders { get; set; }
-        public ICollection<Shift> Shifts { get; set; }
+        public ICollection<Order> ProcessedOrders { get; set; } = new List<Order>();
+        public ICollection<Shift> Shifts { get; set; } = new List<Shift>();
     }
 }

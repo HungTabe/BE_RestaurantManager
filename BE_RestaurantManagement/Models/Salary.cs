@@ -10,8 +10,8 @@ namespace BE_RestaurantManagement.Models
 
         public int EmployeeId { get; set; }
 
-        [ForeignKey("EmployeeId")]
-        public Employee Employee { get; set; }
+       
+        
 
         [Column(TypeName = "decimal(10,2)")]
         public decimal Amount { get; set; }
