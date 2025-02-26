@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BE_RestaurantManagement.Controllers
 {
     [Authorize(Roles = "2")] // Just Admin can access this API
-    [Route("api/menuitems")]
+    [Route("api/menuitem")]
     [ApiController]
     public class MenuItemController : ControllerBase
     {
@@ -18,7 +18,7 @@ namespace BE_RestaurantManagement.Controllers
         }
 
         // Get all menu items (Accessible by both Users & Admins)
-        [HttpGet("GetAllMenuItems")]
+        [HttpGet("get-all-menuitems")]
         [AllowAnonymous] // Allow users to view the menu
         public async Task<IActionResult> GetAllMenuItems()
         {
@@ -26,7 +26,7 @@ namespace BE_RestaurantManagement.Controllers
         }
 
         // Get menu item by ID (Accessible by both Users & Admins)
-        [HttpGet("GetMenuById/{id}")]
+        [HttpGet("get-menuitem-by-id/{id}")]
         [AllowAnonymous] // Allow users to view menu item details
         public async Task<IActionResult> GetMenuItemById(int id)
         {
@@ -36,7 +36,7 @@ namespace BE_RestaurantManagement.Controllers
         }
 
         // Search for menu items by name, category, or price (Accessible by both Users & Admins)
-        [HttpGet("search")]
+        [HttpGet("search-menuitem")]
         [AllowAnonymous] // Allow users to search for menu items
         public async Task<IActionResult> SearchMenuItems([FromQuery] string query)
         {
@@ -45,7 +45,7 @@ namespace BE_RestaurantManagement.Controllers
         }
 
         // Add a new menu item (Only Admin)
-        [HttpPost("AddNewMenu")]
+        [HttpPost("add-new-menuitem")]
         public async Task<IActionResult> AddMenuItem([FromBody] MenuItem menuItem)
         {
             var newItem = await _menuItemService.AddMenuItem(menuItem);
@@ -53,7 +53,7 @@ namespace BE_RestaurantManagement.Controllers
         }
 
         // Update menu item details (Only Admin)
-        [HttpPut("UpdateMenuByID/{id}")]
+        [HttpPut("update-menuitem-by-id/{id}")]
         public async Task<IActionResult> UpdateMenuItem(int id, [FromBody] MenuItem updatedItem)
         {
             var item = await _menuItemService.UpdateMenuItem(id, updatedItem);
@@ -62,7 +62,7 @@ namespace BE_RestaurantManagement.Controllers
         }
 
         // Delete a menu item (Only Admin)
-        [HttpDelete("DeleteMenuByID/{id}")]
+        [HttpDelete("delete-menuitem-by-id/{id}")]
         public async Task<IActionResult> DeleteMenuItem(int id)
         {
             var success = await _menuItemService.DeleteMenuItem(id);
