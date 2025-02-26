@@ -17,7 +17,18 @@ namespace BE_RestaurantManagement.Services
         // Get all Menu
         public async Task<List<MenuItem>> GetAllMenuItems()
         {
-            return await _context.MenuItems.ToListAsync();
+            return await _context.MenuItems
+                .Select(m => new MenuItem
+                {
+                    MenuItemId = m.MenuItemId,
+                    Name = m.Name,
+                    Description = m.Description,
+                    Price = m.Price,
+                    Category = m.Category,
+                    IsAvailable = m.IsAvailable,
+                    ImageUrl = m.ImageUrl
+                })
+                .ToListAsync();
         }
 
         // Get menu by ID

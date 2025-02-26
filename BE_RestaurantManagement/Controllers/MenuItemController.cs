@@ -1,4 +1,5 @@
-﻿using BE_RestaurantManagement.Interfaces;
+﻿using BE_RestaurantManagement.DTOs;
+using BE_RestaurantManagement.Interfaces;
 using BE_RestaurantManagement.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -46,8 +47,18 @@ namespace BE_RestaurantManagement.Controllers
 
         // Add a new menu item (Only Admin)
         [HttpPost("add-new-menuitem")]
-        public async Task<IActionResult> AddMenuItem([FromBody] MenuItem menuItem)
+        public async Task<IActionResult> AddMenuItem([FromBody] CreateMenuItemDto menuItemDto)
         {
+            var menuItem = new MenuItem
+            {
+                Name = menuItemDto.Name,
+                Description = menuItemDto.Description,
+                Price = menuItemDto.Price,
+                Category = menuItemDto.Category,
+                IsAvailable = menuItemDto.IsAvailable,
+                ImageUrl = menuItemDto.ImageUrl
+            };
+
             var newItem = await _menuItemService.AddMenuItem(menuItem);
             return CreatedAtAction(nameof(GetMenuItemById), new { id = newItem.MenuItemId }, newItem);
         }

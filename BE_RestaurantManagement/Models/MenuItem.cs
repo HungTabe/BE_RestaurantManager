@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace BE_RestaurantManagement.Models
 {
@@ -27,6 +28,7 @@ namespace BE_RestaurantManagement.Models
         [Column(TypeName = "nvarchar(255)")]
         public string? ImageUrl { get; set; }
 
+        [JsonIgnore]
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }
