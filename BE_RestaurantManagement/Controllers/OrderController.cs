@@ -3,6 +3,7 @@ using BE_RestaurantManagement.Interfaces;
 using BE_RestaurantManagement.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BE_RestaurantManagement.Controllers
 {
@@ -56,6 +57,39 @@ namespace BE_RestaurantManagement.Controllers
             var result = await _orderService.DeleteOrderAsync(orderId);
             if (!result) return NotFound("Order not found.");
             return Ok(new { message = "Order is deleted successfully" });
+        }
+
+        [HttpPut("update-order/{orderId}")]
+        public async Task<IActionResult> UpdateOrder(int orderId, [FromBody] OrderUpdateRequest request)
+        {
+            try
+            {
+                if (request == null)
+            {
+                return BadRequest("Invalid request data.");
+            }
+
+            var updatedOrder = await _orderService.UpdateOrderAsync(orderId, request);
+
+            if (updatedOrder == null)
+            {
+                return NotFound(new { Message = "Order not found." });
+            }
+
+            return Ok(updatedOrder);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (DbUpdateException ex)
+            {
+                return BadRequest(new { message = "Database update error: " + ex.InnerException?.Message }); // 400 nếu lỗi database
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error: " + ex.Message }); // 500 nếu lỗi không xác định
+            }
         }
 
     }

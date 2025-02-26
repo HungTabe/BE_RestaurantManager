@@ -7,8 +7,8 @@ namespace BE_RestaurantManagement.Interfaces
     {
         Task<Order> CreateOrderAsync(OrderCreateRequest request);
         Task<Order> GetOrderByIdAsync(int orderId);
-        Task<IEnumerable<Order>> GetAllOrdersAsync();
-        Task<Order> UpdateOrderAsync(int orderId, Order order);
+        //Task<IEnumerable<Order>> GetAllOrdersAsync();
+        Task<Order> UpdateOrderAsync(int orderId, OrderUpdateRequest order);
         Task<bool> DeleteOrderAsync(int orderId);
 
     }
