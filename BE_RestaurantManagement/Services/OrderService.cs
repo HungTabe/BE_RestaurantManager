@@ -73,6 +73,15 @@ namespace BE_RestaurantManagement.Services
 
             return order;
         }
+        public async Task<bool> DeleteOrderAsync(int orderId)
+        {
+            var order = await _context.Orders.FindAsync(orderId);
+            if (order == null) return false;
+
+            _context.Orders.Remove(order);
+            await _context.SaveChangesAsync();
+            return true;
+        }
         public async Task<Order> GetOrderByIdAsync(int orderId)
         {
             var order = await _context.Orders

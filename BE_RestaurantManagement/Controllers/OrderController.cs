@@ -49,5 +49,14 @@ namespace BE_RestaurantManagement.Controllers
                 return StatusCode(500, new { message = "Internal server error.", error = ex.Message });
             }
         }
+
+        [HttpDelete("delete-order/{orderId}")]
+        public async Task<ActionResult> DeleteOrder(int orderId)
+        {
+            var result = await _orderService.DeleteOrderAsync(orderId);
+            if (!result) return NotFound("Order not found.");
+            return Ok(new { message = "Order is deleted successfully" });
+        }
+
     }
 }
