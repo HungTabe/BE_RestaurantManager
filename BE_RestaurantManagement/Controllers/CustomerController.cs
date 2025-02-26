@@ -7,7 +7,7 @@ namespace BE_RestaurantManagement.Controllers
 {
     [Authorize(Roles = "2,3,4")] // Only role Admin
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/customer")]
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerService _customerService;
@@ -17,7 +17,7 @@ namespace BE_RestaurantManagement.Controllers
             _customerService = customerService;
         }
 
-        [HttpPost("create-user")]
+        [HttpPost("create-customer")]
         public async Task<IActionResult> CreateCustomer([FromBody] CustomerCreateRequest request)
         {
             try
@@ -31,7 +31,7 @@ namespace BE_RestaurantManagement.Controllers
             }
         }
 
-        [HttpGet("search-user")]
+        [HttpGet("search-customer")]
         public async Task<IActionResult> SearchCustomers([FromQuery] string keyword)
         {
             try
