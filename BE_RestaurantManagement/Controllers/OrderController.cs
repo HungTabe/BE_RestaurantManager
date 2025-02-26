@@ -1,5 +1,6 @@
 ﻿using BE_RestaurantManagement.DTOs;
 using BE_RestaurantManagement.Interfaces;
+using BE_RestaurantManagement.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,6 +29,24 @@ namespace BE_RestaurantManagement.Controllers
             catch (Exception ex)
             {
                 return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        [HttpGet("get-order-by-id/{orderId}")]
+        public async Task<ActionResult<Order>> GetOrderById(int orderId)
+        {
+            try
+            {
+                var order = await _orderService.GetOrderByIdAsync(orderId);
+                return Ok(order);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound(new { message = "Order not found." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error.", error = ex.Message });
             }
         }
     }

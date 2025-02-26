@@ -73,5 +73,17 @@ namespace BE_RestaurantManagement.Services
 
             return order;
         }
+        public async Task<Order> GetOrderByIdAsync(int orderId)
+        {
+            var order = await _context.Orders
+            .Include(o => o.Customer)
+            .Include(o => o.Staff)
+            .Include(o => o.KitchenStaff)
+            .Include(o => o.OrderItems)
+            .ThenInclude(oi => oi.MenuItem)
+            .FirstOrDefaultAsync(o => o.OrderId == orderId);
+
+            return order ?? throw new KeyNotFoundException("Order not found.");
+        }
     }
 }
