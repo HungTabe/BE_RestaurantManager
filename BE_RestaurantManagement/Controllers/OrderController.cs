@@ -7,7 +7,7 @@ namespace BE_RestaurantManagement.Controllers
 {
     [Authorize(Roles = "2,3,4")] // Admin/Manager/Staff
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/order")]
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _orderService;
