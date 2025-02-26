@@ -36,7 +36,8 @@ builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 builder.Services.AddScoped<IStaffService, StaffService>();
 
-
+// Register AddHttpContextAccessor to get claim content from token
+builder.Services.AddHttpContextAccessor();
 
 // Register DbContext to SQL Server
 builder.Services.AddDbContext<RestaurantDbContext>(options =>

@@ -1,0 +1,20 @@
+﻿// Setup DB
+CREATE DATABASE RestaurantDB;
+GO
+
+// Open package console manager
+cd <Project Solution>
+
+// Check build ok then migration add
+dotnet build // will error when previous program still run
+dotnet ef migrations remove
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+
+// Fix error when register : An error occurred while saving the entity changes. See the inner exception for details.
+run Role table query
+
+// Update roldeId to admin for user
+UPDATE [RestaurantDB].[dbo].[Users]
+SET RoleId = 2
+WHERE UserId = <UserId>;

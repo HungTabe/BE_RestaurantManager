@@ -14,6 +14,7 @@ namespace BE_RestaurantManagement.Data
             public DbSet<Role> Roles { get; set; }
             public DbSet<Customer> Customers { get; set; }
             public DbSet<Staff> Staffs { get; set; }
+            public DbSet<KitchenStaff> KitchenStaffs { get; set; }
             public DbSet<Admin> Admins { get; set; }
             public DbSet<MenuItem> MenuItems { get; set; }
             public DbSet<Order> Orders { get; set; }
@@ -24,7 +25,8 @@ namespace BE_RestaurantManagement.Data
             public DbSet<Shift> Shifts { get; set; }
             public DbSet<RevenueReport> RevenueReports { get; set; }
 
-            protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
             {
                 // Cấu hình quan hệ bảng
 
@@ -40,14 +42,20 @@ namespace BE_RestaurantManagement.Data
                     .WithOne(o => o.Customer)
                     .HasForeignKey(o => o.CustomerId);
 
-                // Staff - Order (1-N) (Nhân viên xử lý đơn hàng)
+                // Staff - Order (1-N) ( Staff processing many orders)
                 modelBuilder.Entity<Staff>()
                     .HasMany(s => s.ProcessedOrders)
                     .WithOne(o => o.Staff)
                     .HasForeignKey(o => o.StaffId);
 
-                // Staff - Shift (1-N) (Lịch làm việc của nhân viên)
-                modelBuilder.Entity<Staff>()
+            // Kitchen Staff - Order (1-N) ( Kitchen Staff processing many orders)
+            modelBuilder.Entity<Order>()
+                    .HasOne(o => o.KitchenStaff)  
+                    .WithMany(ks => ks.AssignedOrders) 
+                    .HasForeignKey(o => o.KitchenStaffId); 
+
+             // Staff - Shift (1-N) (staff working schedule)
+             modelBuilder.Entity<Staff>()
                     .HasMany(s => s.Shifts)
                     .WithOne(sh => sh.Staff)
                     .HasForeignKey(sh => sh.StaffId);

@@ -9,5 +9,8 @@ namespace BE_RestaurantManagement.DTOs
 
         [Required]
         public List<OrderItemRequest> OrderItems { get; set; }
+
+        [Required]
+        public int KitchenStaffId { get; set; }
     }
 }

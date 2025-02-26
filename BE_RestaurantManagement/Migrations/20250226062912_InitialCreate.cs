@@ -18,11 +18,11 @@ namespace BE_RestaurantManagement.Migrations
                     MenuItemId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(200)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(500)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    Category = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Category = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     IsAvailable = table.Column<bool>(type: "bit", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(255)", nullable: false)
+                    ImageUrl = table.Column<string>(type: "nvarchar(255)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -78,7 +78,7 @@ namespace BE_RestaurantManagement.Migrations
                     Email = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(255)", nullable: false),
                     RoleId = table.Column<int>(type: "int", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false)
+                    Discriminator = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -121,6 +121,7 @@ namespace BE_RestaurantManagement.Migrations
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     StaffId = table.Column<int>(type: "int", nullable: true),
+                    KitchenStaffId = table.Column<int>(type: "int", nullable: true),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -132,6 +133,11 @@ namespace BE_RestaurantManagement.Migrations
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Users_KitchenStaffId",
+                        column: x => x.KitchenStaffId,
+                        principalTable: "Users",
+                        principalColumn: "UserId");
                     table.ForeignKey(
                         name: "FK_Orders_Users_StaffId",
                         column: x => x.StaffId,
@@ -227,6 +233,11 @@ namespace BE_RestaurantManagement.Migrations
                 name: "IX_Orders_CustomerId",
                 table: "Orders",
                 column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_KitchenStaffId",
+                table: "Orders",
+                column: "KitchenStaffId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_StaffId",

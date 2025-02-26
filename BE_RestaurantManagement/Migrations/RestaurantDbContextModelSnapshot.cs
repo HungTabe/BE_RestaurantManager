@@ -56,15 +56,12 @@ namespace BE_RestaurantManagement.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MenuItemId"));
 
                     b.Property<string>("Category")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<bool>("IsAvailable")
@@ -93,6 +90,9 @@ namespace BE_RestaurantManagement.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("KitchenStaffId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
@@ -106,6 +106,8 @@ namespace BE_RestaurantManagement.Migrations
                     b.HasKey("OrderId");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("KitchenStaffId");
 
                     b.HasIndex("StaffId");
 
@@ -248,8 +250,8 @@ namespace BE_RestaurantManagement.Migrations
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("nvarchar(8)");
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -282,6 +284,13 @@ namespace BE_RestaurantManagement.Migrations
                     b.HasBaseType("BE_RestaurantManagement.Models.User");
 
                     b.HasDiscriminator().HasValue("Admin");
+                });
+
+            modelBuilder.Entity("BE_RestaurantManagement.Models.KitchenStaff", b =>
+                {
+                    b.HasBaseType("BE_RestaurantManagement.Models.User");
+
+                    b.HasDiscriminator().HasValue("KitchenStaff");
                 });
 
             modelBuilder.Entity("BE_RestaurantManagement.Models.Staff", b =>
@@ -317,11 +326,17 @@ namespace BE_RestaurantManagement.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BE_RestaurantManagement.Models.KitchenStaff", "KitchenStaff")
+                        .WithMany("AssignedOrders")
+                        .HasForeignKey("KitchenStaffId");
+
                     b.HasOne("BE_RestaurantManagement.Models.Staff", "Staff")
                         .WithMany("ProcessedOrders")
                         .HasForeignKey("StaffId");
 
                     b.Navigation("Customer");
+
+                    b.Navigation("KitchenStaff");
 
                     b.Navigation("Staff");
                 });
@@ -394,6 +409,11 @@ namespace BE_RestaurantManagement.Migrations
             modelBuilder.Entity("BE_RestaurantManagement.Models.Role", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("BE_RestaurantManagement.Models.KitchenStaff", b =>
+                {
+                    b.Navigation("AssignedOrders");
                 });
 
             modelBuilder.Entity("BE_RestaurantManagement.Models.Staff", b =>
