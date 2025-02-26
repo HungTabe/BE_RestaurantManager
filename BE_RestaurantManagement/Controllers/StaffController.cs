@@ -20,7 +20,7 @@ namespace BE_RestaurantManagement.Controllers
             _staffService = staffService;
         }
 
-        [HttpGet]
+        [HttpGet("get-all-staff")]
         public async Task<ActionResult<IEnumerable<StaffDTO>>> GetAllStaff()
         {
             return Ok(await _staffService.GetAllStaffAsync());
@@ -46,7 +46,7 @@ namespace BE_RestaurantManagement.Controllers
             return CreatedAtAction(nameof(GetStaffById), new { id = createdStaff.UserId }, createdStaff);
         }
 
-        [HttpPut("update-staff/{id}")]
+        [HttpPut("update-staff-by-id/{id}")]
         public async Task<ActionResult<StaffDTO>> UpdateStaff(int id, [FromBody] CreateStaffDTO staffDto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -58,7 +58,7 @@ namespace BE_RestaurantManagement.Controllers
         }
 
 
-        [HttpDelete("delete-staff/{id}")]
+        [HttpDelete("delete-staff-by-id/{id}")]
         public async Task<IActionResult> DeleteStaff(int id)
         {
             var result = await _staffService.DeleteStaffAsync(id);
