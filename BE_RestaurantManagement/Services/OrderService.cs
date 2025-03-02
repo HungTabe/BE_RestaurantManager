@@ -28,8 +28,11 @@ namespace BE_RestaurantManagement.Services
                 throw new Exception("Customer not found");
             }
 
-            var kitchenStaff = await _context.KitchenStaffs.FindAsync(request.KitchenStaffId);
-            if (customer == null)
+            var kitchenStaff = await _context.Users
+                .Where(u => u.RoleId == 6 && u.UserId == request.KitchenStaffId)
+                .FirstOrDefaultAsync();
+
+            if (kitchenStaff == null)
             {
                 throw new Exception("KitchenStaff not found");
             }
@@ -48,8 +51,7 @@ namespace BE_RestaurantManagement.Services
                 OrderDate = DateTime.UtcNow,
                 OrderItems = new List<OrderItem>(),
                 StaffId = userId,
-                KitchenStaffId = request.KitchenStaffId,
-                KitchenStaff = kitchenStaff
+                KitchenStaffId = kitchenStaff.UserId
             };
 
             foreach (var item in request.OrderItems)
@@ -112,17 +114,51 @@ namespace BE_RestaurantManagement.Services
                  .ToListAsync();
         }
 
-        public async Task<Order> GetOrderByIdAsync(int orderId)
+        public async Task<OrderGetAllRequest> GetOrderByIdAsync(int orderId)
         {
             var order = await _context.Orders
             .Include(o => o.Customer)
-            .Include(o => o.Staff)
-            .Include(o => o.KitchenStaff)
             .Include(o => o.OrderItems)
             .ThenInclude(oi => oi.MenuItem)
-            .FirstOrDefaultAsync(o => o.OrderId == orderId);
+            .Where(o => o.OrderId == orderId)
+            .FirstOrDefaultAsync();
 
-            return order ?? throw new KeyNotFoundException("Order not found.");
+            if (order == null)
+            {
+                throw new KeyNotFoundException("Order not found.");
+            }
+
+            // Truy vấn lấy tên Staff và KitchenStaff từ Users
+            var staffName = await _context.Users
+                .Where(u => u.UserId == order.StaffId)
+                .Select(u => u.FullName)
+                .FirstOrDefaultAsync();
+
+            var kitchenStaffName = await _context.Users
+                .Where(u => u.UserId == order.KitchenStaffId)
+                .Select(u => u.FullName)
+                .FirstOrDefaultAsync();
+
+            return new OrderGetAllRequest
+            {
+                OrderId = order.OrderId,
+                CustomerId = order.CustomerId,
+                CustomerName = order.Customer.FullName,
+                StaffId = order.StaffId,
+                StaffName = staffName,
+                KitchenStaffId = order.KitchenStaffId,
+                KitchenStaffName = kitchenStaffName,
+                OrderDate = order.OrderDate,
+                OrderItems = order.OrderItems.Select(oi => new OrderItemDTO
+                {
+                    OrderItemId = oi.OrderItemId,
+                    MenuItemId = oi.MenuItemId,
+                    MenuItemName = oi.MenuItem.Name,
+                    Price = oi.MenuItem.Price,
+                    Quantity = oi.Quantity,
+                    TotalPrice = oi.TotalPrice
+                }).ToList()
+            };
         }
 
         public async Task<Order> UpdateOrderAsync(int orderId, OrderUpdateRequest request)

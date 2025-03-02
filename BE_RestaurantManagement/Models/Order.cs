@@ -22,7 +22,7 @@ namespace BE_RestaurantManagement.Models
         // StaffId to know which staff progress this order
         public int? StaffId { get; set; }
         [ForeignKey("StaffId")]
-        public Staff Staff { get; set; } // Quan hệ với Staff
+        public Staff Staff { get; set; }
 
         public int? KitchenStaffId { get; set; } // Kitchen staff processing orders
         [ForeignKey("KitchenStaffId")]
