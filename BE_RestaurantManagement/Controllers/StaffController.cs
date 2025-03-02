@@ -30,7 +30,7 @@ namespace BE_RestaurantManagement.Controllers
         public async Task<ActionResult<StaffDTO>> GetStaffById(int id)
         {
             var staff = await _staffService.GetStaffByIdAsync(id);
-            if (staff == null) return NotFound(new { message = "Nhân viên không tồn tại!" });
+            if (staff == null) return NotFound(new { message = "Staff does not exist!" });
 
             return Ok(staff);
         }
@@ -41,7 +41,7 @@ namespace BE_RestaurantManagement.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var createdStaff = await _staffService.CreateStaffAsync(staffDto);
-            if (createdStaff == null) return BadRequest(new { message = "Email hoặc tên nhân viên đã tồn tại!" });
+            if (createdStaff == null) return BadRequest(new { message = "Email or staff name has existed !" });
 
             return CreatedAtAction(nameof(GetStaffById), new { id = createdStaff.UserId }, createdStaff);
         }
@@ -52,9 +52,9 @@ namespace BE_RestaurantManagement.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var updatedStaff = await _staffService.UpdateStaffAsync(id, staffDto);
-            if (updatedStaff == null) return BadRequest(new { message = "Không có thay đổi nào được thực hiện hoặc nhân viên không tồn tại!" });
+            if (updatedStaff == null) return BadRequest(new { message = "No change is made or employees do not exist!" });
 
-            return Ok(new { message = "Cập nhật nhân viên thành công!", staff = updatedStaff });
+            return Ok(new { message = "Update successful staff!", staff = updatedStaff });
         }
 
 
@@ -62,9 +62,9 @@ namespace BE_RestaurantManagement.Controllers
         public async Task<IActionResult> DeleteStaff(int id)
         {
             var result = await _staffService.DeleteStaffAsync(id);
-            if (!result) return NotFound(new { message = "Nhân viên không tồn tại!" });
+            if (!result) return NotFound(new { message = "Staff does not exist!" });
 
-            return Ok(new { message = "Xóa nhân viên thành công!" });
+            return Ok(new { message = "Delete employees successfully!" });
         }
 
     }

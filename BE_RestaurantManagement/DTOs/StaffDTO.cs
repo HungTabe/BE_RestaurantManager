@@ -13,5 +13,6 @@
         public string FullName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; } // Password sẽ được hash trước khi lưu
+        public int RoldeId { get; set; }
     }
 }

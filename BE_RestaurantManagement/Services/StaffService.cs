@@ -48,13 +48,13 @@ namespace BE_RestaurantManagement.Services
 
         public async Task<StaffDTO> CreateStaffAsync(CreateStaffDTO staffDto)
         {
-            // Kiểm tra xem email hoặc tên đã tồn tại chưa
+            // Check if the email or name has existed yet
             var existingStaff = await _context.Users
                 .FirstOrDefaultAsync(s => s.Email == staffDto.Email || s.FullName == staffDto.FullName);
 
             if (existingStaff != null)
             {
-                return null; // Trả về null để báo lỗi nhân viên đã tồn tại
+                return null; // Returns null to report an error of existing staff
             }
 
             var staff = new Staff
@@ -62,7 +62,7 @@ namespace BE_RestaurantManagement.Services
                 FullName = staffDto.FullName,
                 Email = staffDto.Email,
                 Password = BCrypt.Net.BCrypt.HashPassword(staffDto.Password),
-                RoleId = 4 // Giả định RoleId = 4 là nhân viên
+                RoleId = staffDto.RoldeId
             };
 
             _context.Users.Add(staff);
@@ -82,16 +82,17 @@ namespace BE_RestaurantManagement.Services
             var staff = await _context.Users.FindAsync(id);
             if (staff == null) return null;
 
-            // Kiểm tra nếu không có sự thay đổi nào
-            if (staff.FullName == staffDto.FullName && staff.Email == staffDto.Email && BCrypt.Net.BCrypt.Verify(staffDto.Password, staff.Password))
+            // Check if there is no change
+            if (staff.FullName == staffDto.FullName && staff.UserId == staffDto.RoldeId && staff.Email == staffDto.Email && BCrypt.Net.BCrypt.Verify(staffDto.Password, staff.Password))
             {
-                return null; // Trả về null nếu không có thay đổi
+                return null; // Return null without changing
             }
 
-            // Cập nhật thông tin nhân viên
+            // Update staff information
             staff.FullName = staffDto.FullName;
             staff.Email = staffDto.Email;
             staff.Password = BCrypt.Net.BCrypt.HashPassword(staffDto.Password);
+            staff.RoleId = staffDto.RoldeId;
 
             _context.Users.Update(staff);
             await _context.SaveChangesAsync();
