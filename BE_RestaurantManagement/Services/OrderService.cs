@@ -1,4 +1,5 @@
-﻿using BE_RestaurantManagement.Data;
+﻿using Azure.Core;
+using BE_RestaurantManagement.Data;
 using BE_RestaurantManagement.DTOs;
 using BE_RestaurantManagement.Interfaces;
 using BE_RestaurantManagement.Models;
@@ -47,7 +48,8 @@ namespace BE_RestaurantManagement.Services
                 OrderDate = DateTime.UtcNow,
                 OrderItems = new List<OrderItem>(),
                 StaffId = userId,
-                KitchenStaffId = request.KitchenStaffId
+                KitchenStaffId = request.KitchenStaffId,
+                KitchenStaff = kitchenStaff
             };
 
             foreach (var item in request.OrderItems)
@@ -83,10 +85,32 @@ namespace BE_RestaurantManagement.Services
             return true;
         }
 
-        //public Task<IEnumerable<Order>> GetAllOrdersAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public async Task<IEnumerable<OrderGetAllRequest>> GetAllOrdersAsync()
+        {
+
+            return await _context.Orders
+                 .Select(o => new OrderGetAllRequest
+                 {
+                     OrderId = o.OrderId,
+                     CustomerId = o.CustomerId,
+                     CustomerName = o.Customer.FullName,
+                     StaffId = o.Staff.UserId,
+                     StaffName = o.Staff.FullName,
+                     KitchenStaffId = o.KitchenStaffId,
+                     KitchenStaffName = o.KitchenStaff.FullName,
+                     OrderDate = o.OrderDate,
+                     OrderItems = o.OrderItems.Select(oi => new OrderItemDTO
+                     {
+                         OrderItemId = oi.OrderItemId,
+                         MenuItemId = oi.MenuItemId,
+                         MenuItemName = oi.MenuItem.Name,
+                         Price = oi.MenuItem.Price,
+                         Quantity = oi.Quantity,
+                         TotalPrice = oi.TotalPrice
+                     }).ToList()
+                 })
+                 .ToListAsync();
+        }
 
         public async Task<Order> GetOrderByIdAsync(int orderId)
         {

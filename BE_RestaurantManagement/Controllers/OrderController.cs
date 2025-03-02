@@ -92,5 +92,12 @@ namespace BE_RestaurantManagement.Controllers
             }
         }
 
+        [HttpGet("get-all-orders")]
+        public async Task<ActionResult<IEnumerable<OrderGetAllRequest>>> GetAllOrders()
+        {
+            var orders = await _orderService.GetAllOrdersAsync();
+            return Ok(orders);
+        }
+
     }
 }
