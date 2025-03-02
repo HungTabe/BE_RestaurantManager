@@ -17,6 +17,9 @@ namespace BE_RestaurantManagement.Models
         public decimal Amount { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
-        public string PaymentMethod { get; set; } // Cash, Card, VNPAY
+        public string PaymentMethod { get; set; } // Cash, ZaloPay
+
+        [Column(TypeName = "nvarchar(50)")]
+        public string PaymentStatus { get; set; } // Pending, Processing, Completed
     }
 }

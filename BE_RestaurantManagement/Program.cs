@@ -10,6 +10,7 @@ using BE_RestaurantManagement.Configs;
 using Microsoft.IdentityModel.Tokens;
 using BE_RestaurantManagement.Middleware;
 using System.IdentityModel.Tokens.Jwt;
+using BE_RestaurantManagement.Zalopay.Config;
 
 
 
@@ -33,7 +34,7 @@ builder.Services.AddScoped<IMenuItemService, MenuItemService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
-
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IStaffService, StaffService>();
 
 // Register AddHttpContextAccessor to get claim content from token
@@ -90,6 +91,10 @@ builder.Services.AddCors(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Config ZaloPayConfig
+builder.Services.Configure<ZaloPayConfig>(
+builder.Configuration.GetSection(ZaloPayConfig.ConfigName));
 
 var app = builder.Build();
 
