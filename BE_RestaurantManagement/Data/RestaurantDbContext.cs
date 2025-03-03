@@ -24,6 +24,8 @@ namespace BE_RestaurantManagement.Data
             public DbSet<Table> Tables { get; set; }
             public DbSet<Shift> Shifts { get; set; }
             public DbSet<RevenueReport> RevenueReports { get; set; }
+            public DbSet<Promotion> Promotions { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -48,14 +50,14 @@ namespace BE_RestaurantManagement.Data
                     .WithOne(o => o.Staff)
                     .HasForeignKey(o => o.StaffId);
 
-            // Kitchen Staff - Order (1-N) ( Kitchen Staff processing many orders)
-            modelBuilder.Entity<Order>()
+                // Kitchen Staff - Order (1-N) ( Kitchen Staff processing many orders)
+                modelBuilder.Entity<Order>()
                     .HasOne(o => o.KitchenStaff)  
                     .WithMany(ks => ks.AssignedOrders) 
                     .HasForeignKey(o => o.KitchenStaffId); 
 
-             // Staff - Shift (1-N) (staff working schedule)
-             modelBuilder.Entity<Staff>()
+                // Staff - Shift (1-N) (staff working schedule)
+                modelBuilder.Entity<Staff>()
                     .HasMany(s => s.Shifts)
                     .WithOne(sh => sh.Staff)
                     .HasForeignKey(sh => sh.StaffId);
@@ -70,13 +72,19 @@ namespace BE_RestaurantManagement.Data
                     .WithMany(m => m.OrderItems)
                     .HasForeignKey(oi => oi.MenuItemId);
 
-                // Bảng trung gian Discount & Promotion (nếu có)
-                // modelBuilder.Entity<Discount>()
-                //     .HasMany(d => d.Orders)
-                //     .WithOne(o => o.Discount)
-                //     .HasForeignKey(o => o.DiscountId);
+                // Order - Promotion (N-1)
+                modelBuilder.Entity<Order>()
+                .HasOne(o => o.Promotion)
+                .WithMany(p => p.Orders)
+                .HasForeignKey(o => o.PromotionId)
+                .OnDelete(DeleteBehavior.SetNull); // If the promotion is deleted, does not delete orders
 
-                base.OnModelCreating(modelBuilder);
+                // The default configuration for promotion (e.g. does not give Discount more than 100%)
+                modelBuilder.Entity<Promotion>()
+                .Property(p => p.DiscountPercentage)
+                .HasPrecision(5, 2); // The maximum decimal is 5 digits, 2 words after the dot
+
+            base.OnModelCreating(modelBuilder);
             }
         }
     }

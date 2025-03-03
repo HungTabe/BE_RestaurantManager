@@ -96,6 +96,9 @@ namespace BE_RestaurantManagement.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("PromotionId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("StaffId")
                         .HasColumnType("int");
 
@@ -108,6 +111,8 @@ namespace BE_RestaurantManagement.Migrations
                     b.HasIndex("CustomerId");
 
                     b.HasIndex("KitchenStaffId");
+
+                    b.HasIndex("PromotionId");
 
                     b.HasIndex("StaffId");
 
@@ -167,6 +172,42 @@ namespace BE_RestaurantManagement.Migrations
                         .IsUnique();
 
                     b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("BE_RestaurantManagement.Models.Promotion", b =>
+                {
+                    b.Property<int>("PromotionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PromotionId"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<decimal>("DiscountPercentage")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("PromotionId");
+
+                    b.ToTable("Promotions");
                 });
 
             modelBuilder.Entity("BE_RestaurantManagement.Models.RevenueReport", b =>
@@ -330,6 +371,11 @@ namespace BE_RestaurantManagement.Migrations
                         .WithMany("AssignedOrders")
                         .HasForeignKey("KitchenStaffId");
 
+                    b.HasOne("BE_RestaurantManagement.Models.Promotion", "Promotion")
+                        .WithMany("Orders")
+                        .HasForeignKey("PromotionId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("BE_RestaurantManagement.Models.Staff", "Staff")
                         .WithMany("ProcessedOrders")
                         .HasForeignKey("StaffId");
@@ -337,6 +383,8 @@ namespace BE_RestaurantManagement.Migrations
                     b.Navigation("Customer");
 
                     b.Navigation("KitchenStaff");
+
+                    b.Navigation("Promotion");
 
                     b.Navigation("Staff");
                 });
@@ -404,6 +452,11 @@ namespace BE_RestaurantManagement.Migrations
 
                     b.Navigation("Payment")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BE_RestaurantManagement.Models.Promotion", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("BE_RestaurantManagement.Models.Role", b =>

@@ -30,6 +30,24 @@ namespace BE_RestaurantManagement.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Promotions",
+                columns: table => new
+                {
+                    PromotionId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    DiscountPercentage = table.Column<decimal>(type: "decimal(5,2)", precision: 5, scale: 2, nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Promotions", x => x.PromotionId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RevenueReports",
                 columns: table => new
                 {
@@ -122,11 +140,18 @@ namespace BE_RestaurantManagement.Migrations
                     Status = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     StaffId = table.Column<int>(type: "int", nullable: true),
                     KitchenStaffId = table.Column<int>(type: "int", nullable: true),
+                    PromotionId = table.Column<int>(type: "int", nullable: true),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.OrderId);
+                    table.ForeignKey(
+                        name: "FK_Orders_Promotions_PromotionId",
+                        column: x => x.PromotionId,
+                        principalTable: "Promotions",
+                        principalColumn: "PromotionId",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Orders_Users_CustomerId",
                         column: x => x.CustomerId,
@@ -240,6 +265,11 @@ namespace BE_RestaurantManagement.Migrations
                 column: "KitchenStaffId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_PromotionId",
+                table: "Orders",
+                column: "PromotionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_StaffId",
                 table: "Orders",
                 column: "StaffId");
@@ -287,6 +317,9 @@ namespace BE_RestaurantManagement.Migrations
 
             migrationBuilder.DropTable(
                 name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "Promotions");
 
             migrationBuilder.DropTable(
                 name: "Users");

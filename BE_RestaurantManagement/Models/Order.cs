@@ -28,6 +28,11 @@ namespace BE_RestaurantManagement.Models
         [ForeignKey("KitchenStaffId")]
         public KitchenStaff KitchenStaff { get; set; }
 
+        public int? PromotionId { get; set; } // can be null without promotion
+        [ForeignKey("PromotionId")]
+        public virtual Promotion Promotion { get; set; } // Relationship with Promotion
+        /*Virtual helps EF support Lazy Loading (download data when needed).*/
+
         [Required]
         public DateTime OrderDate { get; set; }
 
@@ -36,3 +41,5 @@ namespace BE_RestaurantManagement.Models
         public Payment Payment { get; set; }
     }
 }
+
+/**/
