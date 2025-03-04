@@ -1,32 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using BE_RestaurantManagement.DTOs;
+using BE_RestaurantManagement.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using RestaurantAPI.Models;
 
-namespace RestaurantAPI.Controllers
+namespace BE_RestaurantManagement.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize(Roles = "2,3,4")] // Only role Admin
     [ApiController]
+    [Route("api/customer")]
     public class CustomerController : ControllerBase
     {
-        private readonly RestaurantDbContext _context;
+        private readonly ICustomerService _customerService;
 
-        public CustomerController(RestaurantDbContext context)
+        public CustomerController(ICustomerService customerService)
         {
-            _context = context;
+            _customerService = customerService;
         }
 
-        // GET: api/Customer
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
+        [HttpPost("create-customer")]
+        public async Task<IActionResult> CreateCustomer([FromBody] CustomerCreateRequest request)
         {
-            return await _context.Customers.ToListAsync();
+            try
+            {
+                var customer = await _customerService.CreateCustomerAsync(request);
+                return Ok(new { message = "Customer created successfully", customer });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
-        
+        [HttpGet("search-customer")]
+        public async Task<IActionResult> SearchCustomers([FromQuery] string keyword)
+        {
+            try
+            {
+                var customers = await _customerService.SearchCustomersAsync(keyword);
+                return Ok(new { message = "Search results", customers });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
     }
 }

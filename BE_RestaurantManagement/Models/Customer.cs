@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BE_RestaurantManagement.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,12 +8,9 @@ using System.Threading.Tasks;
 
 namespace RestaurantAPI.Models
 {
-    public class Customer
+    public class Customer : User
     {
-        [Key]
-        public int CustomerID { get; set; }
-
-        [Column(TypeName ="nvarchar(100)")]
-        public string CustomerName { get; set; }
+        public ICollection<Order> Orders { get; set; }
+        public ICollection<Feedback> Feedbacks { get; set; }
     }
 }
