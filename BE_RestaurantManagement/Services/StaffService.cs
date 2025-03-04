@@ -22,6 +22,7 @@ namespace BE_RestaurantManagement.Services
         public async Task<IEnumerable<StaffDTO>> GetAllStaffAsync()
         {
             return await _context.Users
+                .Where(s => s.RoleId == 4) 
                 .Select(s => new StaffDTO
                 {
                     UserId = s.UserId,

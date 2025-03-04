@@ -33,8 +33,8 @@ builder.Services.AddScoped<IMenuItemService, MenuItemService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
-
 builder.Services.AddScoped<IStaffService, StaffService>();
+builder.Services.AddScoped<ITableService, TableService>();
 
 // Register AddHttpContextAccessor to get claim content from token
 builder.Services.AddHttpContextAccessor();
